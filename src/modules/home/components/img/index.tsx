@@ -10,7 +10,7 @@ export default function CategorySplitSection() {
       <div className="relative w-full h-full overflow-hidden group rounded-xl">
 
         <img
-          src="/img2.jpg"
+          src="/car4.png"
           alt="Topwear"
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
@@ -30,7 +30,7 @@ export default function CategorySplitSection() {
       <div className="relative w-full h-full overflow-hidden group rounded-xl">
 
         <img
-          src="/img3.jpg"
+          src="/car5.png"
           alt="Bottomwear"
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />

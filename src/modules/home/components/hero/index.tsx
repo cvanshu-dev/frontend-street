@@ -6,21 +6,21 @@ import { motion, AnimatePresence } from "framer-motion"
 
 const slides = [
   {
-    image: "/img2.jpg",
+    image: "/img3.jpg",
     title: "Street Essentials",
     subtitle: "Minimal everyday streetwear designed for comfort and style.",
     buttonText: "Shop T-Shirts",
     link: "/collections/tshirts",
   },
   {
-    image: "/img3.jpg",
+    image: "/img2.jpg",
     title: "Performance Fit",
     subtitle: "Premium compression wear built for training and movement.",
     buttonText: "Shop Compression",
     link: "/collections/compression",
   },
   {
-    image: "/img4.jpg",
+    image: "/car1.jpg",
     title: "New Season Drop",
     subtitle: "Fresh arrivals made for modern street fashion.",
     buttonText: "Explore Collection",

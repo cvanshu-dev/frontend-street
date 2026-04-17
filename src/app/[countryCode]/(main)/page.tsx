@@ -3,7 +3,8 @@ import { Metadata } from "next"
 import FeaturedProducts from "@modules/home/components/featured-products"
 import Hero from "@modules/home/components/hero"
 import CategorySplitSection from "@modules/home/components/img"
-import { listCollections } from "@lib/data/collections"
+import ProductRail from "@modules/home/components/featured-products/product-rail"
+import { listCollections, getCollectionByHandle } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
 
 export const metadata: Metadata = {
@@ -24,6 +25,9 @@ export default async function Home(props: {
     fields: "id, title, handle"
   })
 
+  // Fetch the "he" collection specifically
+  const heCollection = await getCollectionByHandle("tshirt")
+
   if (!collections || !region) {
     return null
   }
@@ -32,6 +36,10 @@ export default async function Home(props: {
     <>
       <Hero />
       <CategorySplitSection />
+
+      {heCollection && (
+        <ProductRail collection={heCollection} region={region} />
+      )}
 
       <div className="py-1 space-y-16">
 
