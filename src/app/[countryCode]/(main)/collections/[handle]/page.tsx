@@ -17,6 +17,11 @@ type Props = {
 
 export const PRODUCT_LIMIT = 12
 
+/**
+ * generateStaticParams allows us to pre-render the base collection pages.
+ * However, the presence of searchParams will still opt the page into 
+ * dynamic rendering at request time when filters are applied.
+ */
 export async function generateStaticParams() {
   const { collections } = await listCollections({
     fields: "*products",
@@ -58,22 +63,22 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     notFound()
   }
 
-  const metadata = {
+  return {
     title: `${collection.title} | Street Code`,
     description: `${collection.title} collection`,
-  } as Metadata
-
-  return metadata
+  }
 }
 
 export default async function CollectionPage(props: Props) {
-  const searchParams = await props.searchParams
-  const params = await props.params
+  // Awaiting both params and searchParams to comply with Next.js 15+ patterns
+  const [params, searchParams] = await Promise.all([
+    props.params,
+    props.searchParams
+  ])
+  
   const { sortBy, page } = searchParams
 
-  const collection = await getCollectionByHandle(params.handle).then(
-    (collection: StoreCollection) => collection
-  )
+  const collection = await getCollectionByHandle(params.handle)
 
   if (!collection) {
     notFound()
