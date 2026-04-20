@@ -16,31 +16,76 @@ export default async function Nav() {
   ])
 
   return (
-    <div className="sticky top-0 inset-x-0 z-50 group">
-      <header className="relative h-16 mx-auto border-b duration-200 bg-white border-ui-border-base">
-        <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular">
-          <div className="flex-1 basis-0 h-full flex items-center">
+    <div className="sticky top-0 inset-x-0 z-50 group premium-nav-wrapper">
+      <header 
+        className="relative duration-300 premium-nav-header"
+        style={{
+          height: "80px",
+          background: `linear-gradient(
+            180deg,
+            rgba(20, 20, 20, 0.68) 0%,
+            rgba(10, 10, 10, 0.72) 100%
+          )`,
+          backdropFilter: "blur(16px)",
+          borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
+          WebkitBackdropFilter: "blur(16px)",
+        }}
+      >
+        <nav 
+          className="px-8 flex items-center justify-between w-full h-full premium-nav"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "minmax(80px, 1fr) auto minmax(80px, 1fr)",
+            alignItems: "center",
+            gap: "2rem",
+          }}
+        >
+          {/* Left Menu - Fixed Width Container */}
+          <div className="flex items-center h-full justify-start premium-nav-left">
             <div className="h-full">
               <SideMenu regions={regions} locales={locales} currentLocale={currentLocale} />
             </div>
           </div>
 
-          <div className="flex items-center h-full">
+          {/* Center Logo - Absolute Center */}
+          <div className="flex items-center h-full justify-center premium-nav-center">
             <LocalizedClientLink
               href="/"
-              className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase"
+              className="premium-nav-logo"
               data-testid="nav-store-link"
+              style={{
+                fontSize: "13px",
+                fontWeight: "700",
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                color: "#F5F5F5",
+                transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                textDecoration: "none",
+                position: "relative",
+                whiteSpace: "nowrap",
+              }}
             >
-              Street Code
+              STREET CODE
             </LocalizedClientLink>
           </div>
 
-          <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
-            <div className="hidden small:flex items-center gap-x-6 h-full">
+          {/* Right Actions - Account & Cart */}
+          <div className="flex items-center gap-x-8 h-full flex-1 justify-end premium-nav-right">
+            <div className="hidden small:flex items-center gap-x-8 h-full">
               <LocalizedClientLink
-                className="hover:text-ui-fg-base"
+                className="premium-nav-link"
                 href="/account"
                 data-testid="nav-account-link"
+                style={{
+                  fontSize: "11px",
+                  fontWeight: "500",
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  color: "#E3E3E3",
+                  transition: "all 0.3s ease",
+                  textDecoration: "none",
+                  position: "relative",
+                }}
               >
                 Account
               </LocalizedClientLink>
@@ -48,11 +93,23 @@ export default async function Nav() {
             <Suspense
               fallback={
                 <LocalizedClientLink
-                  className="hover:text-ui-fg-base flex gap-2"
+                  className="premium-nav-link premium-nav-cart"
                   href="/cart"
                   data-testid="nav-cart-link"
+                  style={{
+                    fontSize: "11px",
+                    fontWeight: "500",
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    color: "#E3E3E3",
+                    transition: "all 0.3s ease",
+                    textDecoration: "none",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                  }}
                 >
-                  Cart (0)
+                  Cart <span style={{ fontSize: "10px", opacity: 0.7 }}>(0)</span>
                 </LocalizedClientLink>
               }
             >
@@ -61,6 +118,8 @@ export default async function Nav() {
           </div>
         </nav>
       </header>
+
+
     </div>
   )
 }

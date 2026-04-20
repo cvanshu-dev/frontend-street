@@ -38,7 +38,21 @@ const SideMenu = ({ regions, locales, currentLocale }: SideMenuProps) => {
               <div className="relative flex h-full">
                 <Popover.Button
                   data-testid="nav-menu-button"
-                  className="relative h-full flex items-center transition-all ease-out duration-200 focus:outline-none hover:text-ui-fg-base"
+                  className="premium-nav-link"
+                  style={{
+                    fontSize: "11px",
+                    fontWeight: "500",
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    color: "#E3E3E3",
+                    transition: "all 0.3s ease",
+                    textDecoration: "none",
+                    display: "flex",
+                    alignItems: "center",
+                    height: "100%",
+                    position: "relative",
+                    overflow: "hidden",
+                  }}
                 >
                   Menu
                 </Popover.Button>
@@ -55,20 +69,52 @@ const SideMenu = ({ regions, locales, currentLocale }: SideMenuProps) => {
               <Transition
                 show={open}
                 as={Fragment}
-                enter="transition ease-out duration-150"
-                enterFrom="opacity-0"
-                enterTo="opacity-100 backdrop-blur-2xl"
+                enter="transition ease-out duration-200"
+                enterFrom="opacity-0 translate-x-4"
+                enterTo="opacity-100 translate-x-0 backdrop-blur-xl"
                 leave="transition ease-in duration-150"
-                leaveFrom="opacity-100 backdrop-blur-2xl"
-                leaveTo="opacity-0"
+                leaveFrom="opacity-100 translate-x-0 backdrop-blur-xl"
+                leaveTo="opacity-0 translate-x-4"
               >
-                <PopoverPanel className="flex flex-col absolute w-full pr-4 sm:pr-0 sm:w-1/3 2xl:w-1/4 sm:min-w-min h-[calc(100vh-1rem)] z-[51] inset-x-0 text-sm text-ui-fg-on-color m-2 backdrop-blur-2xl">
+                <PopoverPanel 
+                  className="flex flex-col absolute w-full pr-4 sm:pr-0 sm:w-1/3 2xl:w-1/4 sm:min-w-min h-[calc(100vh-1rem)] z-[51] inset-x-0 text-sm text-ui-fg-on-color m-2 backdrop-blur-xl premium-side-menu-panel"
+                  style={{
+                    background: `linear-gradient(
+                      180deg,
+                      rgba(20, 20, 20, 0.68) 0%,
+                      rgba(10, 10, 10, 0.72) 100%
+                    )`,
+                    borderRadius: "3px",
+                    backdropFilter: "blur(16px)",
+                    WebkitBackdropFilter: "blur(16px)",
+                  }}
+                >
                   <div
                     data-testid="nav-menu-popup"
-                    className="flex flex-col h-full bg-[rgba(3,7,18,0.5)] rounded-rounded justify-between p-6"
+                    className="flex flex-col h-full justify-between p-6 border border-gray-900"
+                    style={{
+                      background: "transparent",
+                      borderColor: "rgba(255, 255, 255, 0.06)",
+                    }}
                   >
+                    <style jsx>{`
+                      .premium-side-menu-panel {
+                        box-shadow: 
+                          inset 1px 0 0 rgba(255, 255, 255, 0.08),
+                          0 8px 32px rgba(0, 0, 0, 0.4);
+                      }
+                    `}</style>
                     <div className="flex justify-end" id="xmark">
-                      <button data-testid="close-menu-button" onClick={close}>
+                      <button 
+                        data-testid="close-menu-button" 
+                        onClick={close}
+                        style={{
+                          color: "#E3E3E3",
+                          transition: "all 0.3s ease",
+                        }}
+                        onMouseEnter={(e) => (e.currentTarget.style.color = "#FFFFFF")}
+                        onMouseLeave={(e) => (e.currentTarget.style.color = "#E3E3E3")}
+                      >
                         <XMark />
                       </button>
                     </div>
@@ -78,9 +124,19 @@ const SideMenu = ({ regions, locales, currentLocale }: SideMenuProps) => {
                           <li key={name}>
                             <LocalizedClientLink
                               href={href}
-                              className="text-3xl leading-10 hover:text-ui-fg-disabled"
+                              className="premium-menu-link"
                               onClick={close}
                               data-testid={`${name.toLowerCase()}-link`}
+                              style={{
+                                fontSize: "24px",
+                                fontWeight: "600",
+                                letterSpacing: "-0.02em",
+                                color: "#E3E3E3",
+                                transition: "all 0.3s ease",
+                                textDecoration: "none",
+                                display: "inline-block",
+                                position: "relative",
+                              }}
                             >
                               {name}
                             </LocalizedClientLink>
@@ -91,9 +147,10 @@ const SideMenu = ({ regions, locales, currentLocale }: SideMenuProps) => {
                     <div className="flex flex-col gap-y-6">
                       {!!locales?.length && (
                         <div
-                          className="flex justify-between"
+                          className="flex justify-between items-center"
                           onMouseEnter={languageToggleState.open}
                           onMouseLeave={languageToggleState.close}
+                          style={{ color: "#E3E3E3" }}
                         >
                           <LanguageSelect
                             toggleState={languageToggleState}
@@ -105,13 +162,15 @@ const SideMenu = ({ regions, locales, currentLocale }: SideMenuProps) => {
                               "transition-transform duration-150",
                               languageToggleState.state ? "-rotate-90" : ""
                             )}
+                            style={{ color: "#E3E3E3" }}
                           />
                         </div>
                       )}
                       <div
-                        className="flex justify-between"
+                        className="flex justify-between items-center"
                         onMouseEnter={countryToggleState.open}
                         onMouseLeave={countryToggleState.close}
+                        style={{ color: "#E3E3E3" }}
                       >
                         {regions && (
                           <CountrySelect
@@ -124,9 +183,17 @@ const SideMenu = ({ regions, locales, currentLocale }: SideMenuProps) => {
                             "transition-transform duration-150",
                             countryToggleState.state ? "-rotate-90" : ""
                           )}
+                          style={{ color: "#E3E3E3" }}
                         />
                       </div>
-                      <Text className="flex justify-between txt-compact-small">
+                      <Text 
+                        className="flex justify-between txt-compact-small"
+                        style={{ 
+                          color: "#808080",
+                          fontSize: "10px",
+                          letterSpacing: "0.05em"
+                        }}
+                      >
                         © {new Date().getFullYear()} Street Code. All rights
                         reserved.
                       </Text>
