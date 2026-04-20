@@ -82,29 +82,13 @@ const CartDropdown = ({
       <Popover className="relative h-full">
         <PopoverButton className="h-full premium-cart-button">
           <LocalizedClientLink
-            className="premium-nav-link premium-nav-cart"
+            className="premium-nav-link premium-nav-cart text-[11px] font-medium tracking-[0.25em] uppercase text-white/95 hover:text-white transition flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
             href="/cart"
             data-testid="nav-cart-link"
-            style={{
-              fontSize: "11px",
-              fontWeight: "500",
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-              color: "#E3E3E3",
-              transition: "all 0.3s ease",
-              textDecoration: "none",
-              display: "flex",
-              alignItems: "center",
-              gap: "0.5rem",
-            }}
           >
             Cart{" "}
             <span
-              style={{
-                fontSize: "10px",
-                opacity: 0.7,
-                marginLeft: "0.25rem",
-              }}
+              className="text-[10px] text-white/80"
             >
               ({totalItems})
             </span>
@@ -122,36 +106,19 @@ const CartDropdown = ({
         >
           <PopoverPanel
             static
-            className="hidden small:block absolute top-[calc(100%+8px)] right-0 w-[420px] text-ui-fg-base premium-cart-dropdown"
+            className="hidden small:block absolute top-[calc(100%+10px)] right-0 w-[440px] text-white/90 premium-cart-dropdown overflow-hidden rounded-2xl border border-white/8 bg-gradient-to-b from-[#0b0b0c]/95 via-[#0d0d10]/95 to-[#09090a]/95 backdrop-blur-xl shadow-[0_24px_60px_rgba(0,0,0,0.55)]"
             data-testid="nav-cart-dropdown"
-            style={{
-              background: `linear-gradient(
-                180deg,
-                rgba(25, 25, 25, 0.70) 0%,
-                rgba(15, 15, 15, 0.75) 100%
-              )`,
-              border: "1px solid rgba(255, 255, 255, 0.06)",
-              borderRadius: "3px",
-              backdropFilter: "blur(16px)",
-              WebkitBackdropFilter: "blur(16px)",
-              boxShadow: `
-                inset 0 1px 0 rgba(255, 255, 255, 0.08),
-                0 8px 32px rgba(0, 0, 0, 0.4)
-              `,
-            }}
           >
-            <div className="p-4 flex items-center justify-center border-b" style={{ borderColor: "rgba(255, 255, 255, 0.06)" }}>
-              <h3 style={{ 
-                fontSize: "12px", 
-                fontWeight: "600", 
-                letterSpacing: "0.1em", 
-                textTransform: "uppercase", 
-                color: "#F5F5F5" 
-              }}>Shopping Bag</h3>
+            <div className="px-5 py-4 flex items-center justify-between border-b border-white/8">
+              <div className="flex flex-col">
+                <span className="text-[11px] uppercase tracking-[0.3em] text-white/90">Shopping Bag</span>
+                <span className="text-[12px] text-white/70">Curated essentials</span>
+              </div>
+              <span className="text-[10px] uppercase tracking-[0.25em] text-white/80">{totalItems} Items</span>
             </div>
             {cartState && cartState.items?.length ? (
               <>
-                <div className="overflow-y-scroll max-h-[402px] px-4 grid grid-cols-1 gap-y-8 no-scrollbar p-px">
+                <div className="overflow-y-scroll max-h-[402px] px-5 py-4 grid grid-cols-1 gap-y-6 no-scrollbar">
                   {cartState.items
                     .sort((a, b) => {
                       return (a.created_at ?? "") > (b.created_at ?? "")
@@ -160,7 +127,7 @@ const CartDropdown = ({
                     })
                     .map((item) => (
                       <div
-                        className="grid grid-cols-[122px_1fr] gap-x-4"
+                        className="grid grid-cols-[110px_1fr] gap-x-4 pb-6 border-b border-white/8 last:border-b-0 last:pb-0"
                         key={item.id}
                         data-testid="cart-item"
                       >
@@ -177,8 +144,8 @@ const CartDropdown = ({
                         <div className="flex flex-col justify-between flex-1">
                           <div className="flex flex-col flex-1">
                             <div className="flex items-start justify-between">
-                              <div className="flex flex-col overflow-ellipsis whitespace-nowrap mr-4 w-[180px]">
-                                <h3 style={{ fontSize: "14px", fontWeight: "500", color: "#E3E3E3", overflow: "hidden", textOverflow: "ellipsis" }}>
+                              <div className="flex flex-col overflow-ellipsis whitespace-nowrap mr-4 w-[190px]">
+                                <h3 className="text-[14px] font-medium text-white/90 overflow-hidden text-ellipsis">
                                   <LocalizedClientLink
                                     href={`/products/${item.product_handle}`}
                                     data-testid="product-link"
@@ -194,7 +161,7 @@ const CartDropdown = ({
                                 <span
                                   data-testid="cart-item-quantity"
                                   data-value={item.quantity}
-                                  style={{ fontSize: "11px", color: "#D0D0D0" }}
+                                  className="text-[11px] text-white/70"
                                 >
                                   Qty: {item.quantity}
                                 </span>
@@ -210,7 +177,7 @@ const CartDropdown = ({
                           </div>
                           <DeleteButton
                             id={item.id}
-                            className="mt-1 remove-btn"
+                            className="mt-2 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-white hover:text-white/80 transition"
                             data-testid="cart-item-remove-button"
                           >
                             Remove
@@ -220,19 +187,18 @@ const CartDropdown = ({
                     ))}
                 </div>
                 <div
-                  className="p-4 flex flex-col gap-y-4 text-small-regular border-t"
-                  style={{ borderColor: "rgba(255, 255, 255, 0.06)", color: "#E3E3E3" }}
+                  className="px-5 py-4 flex flex-col gap-y-4 text-small-regular border-t border-white/8 text-white/90"
                 >
                   <div className="flex items-center justify-between">
-                    <span style={{ fontWeight: "600", color: "#E8E8E8" }}>
+                    <span className="font-semibold text-white/90">
                       Subtotal{" "}
-                      <span style={{ fontWeight: "400", color: "#D0D0D0" }}>(excl. taxes)</span>
+                      <span className="font-normal text-white/70">(excl. taxes)</span>
                     </span>
                     <span
                       className="text-large-semi"
                       data-testid="cart-subtotal"
                       data-value={subtotal}
-                      style={{ color: "#F5F5F5", fontWeight: "600" }}
+                      style={{ color: "#ffffff", fontWeight: "600" }}
                     >
                       {convertToLocale({
                         amount: subtotal,
@@ -246,9 +212,9 @@ const CartDropdown = ({
                       size="large"
                       data-testid="go-to-cart-button"
                       style={{
-                        background: "#f5f5f5",
-                        color: "#0a0a0a",
-                        border: "1px solid #f5f5f5",
+                        background: "#f3f1ea",
+                        color: "#0b0b0c",
+                        border: "1px solid #f3f1ea",
                         fontWeight: "600",
                         fontSize: "11px",
                         letterSpacing: "0.08em",
@@ -263,27 +229,14 @@ const CartDropdown = ({
             ) : (
               <div>
                 <div
-                  className="flex py-16 flex-col gap-y-4 items-center justify-center"
-                  style={{ color: "#E8E8E8" }}
+                  className="flex py-16 flex-col gap-y-4 items-center justify-center text-white/90"
                 >
                   <div
-                    style={{
-                      width: "24px",
-                      height: "24px",
-                      borderRadius: "50%",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      background: "rgba(255, 255, 255, 0.1)",
-                      border: "1px solid rgba(255, 255, 255, 0.2)",
-                      fontSize: "10px",
-                      fontWeight: "600",
-                      color: "#E8E8E8"
-                    }}
+                    className="w-7 h-7 rounded-full flex items-center justify-center bg-white/8 border border-white/15 text-[10px] font-semibold text-white/80"
                   >
                     0
                   </div>
-                  <span style={{ fontSize: "14px", color: "#E8E8E8" }}>Your bag is empty.</span>
+                  <span className="text-[14px] text-white/90">Your bag is empty.</span>
                   <div>
                     <LocalizedClientLink href="/store">
                       <>
@@ -292,8 +245,8 @@ const CartDropdown = ({
                           onClick={close}
                           style={{
                             background: "rgba(255, 255, 255, 0.08)",
-                            color: "#E8E8E8",
-                            border: "1px solid rgba(255, 255, 255, 0.15)",
+                            color: "#ffffff",
+                            border: "1px solid rgba(255, 255, 255, 0.18)",
                             fontWeight: "600",
                             fontSize: "11px",
                             letterSpacing: "0.08em",
