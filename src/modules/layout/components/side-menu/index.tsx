@@ -38,21 +38,7 @@ const SideMenu = ({ regions, locales, currentLocale }: SideMenuProps) => {
               <div className="relative flex h-full">
                 <Popover.Button
                   data-testid="nav-menu-button"
-                  className="premium-nav-link"
-                  style={{
-                    fontSize: "11px",
-                    fontWeight: "500",
-                    letterSpacing: "0.08em",
-                    textTransform: "uppercase",
-                    color: "#E3E3E3",
-                    transition: "all 0.3s ease",
-                    textDecoration: "none",
-                    display: "flex",
-                    alignItems: "center",
-                    height: "100%",
-                    position: "relative",
-                    overflow: "hidden",
-                  }}
+                  className="uppercase tracking-[0.3em] text-white text-sm font-light hover:text-cyan-400 transition-colors"
                 >
                   Menu
                 </Popover.Button>

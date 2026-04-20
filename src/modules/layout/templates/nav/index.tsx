@@ -6,6 +6,7 @@ import { getLocale } from "@lib/data/locale-actions"
 import { StoreRegion } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import CartButton from "@modules/layout/components/cart-button"
+import SideMenu from "@modules/layout/components/side-menu"
 
 export default async function Nav() {
   const [regions, locales, currentLocale] = await Promise.all([
@@ -20,12 +21,10 @@ export default async function Nav() {
         <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-60" />
         <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-300 to-transparent opacity-40 blur-sm" />
         <div className="absolute inset-0 shadow-[inset_0_-1px_16px_rgba(34,211,238,0.1), 0_8px_32px_rgba(34,211,238,0.12)]" />
-        <nav className="content-container flex items-center justify-between w-full h-full px-8">
+        <nav className="content-container flex items-center justify-between w-full h-full px-8 relative z-20">
           {/* Left - MENU */}
           <div className="flex-1 basis-0 h-full flex items-center">
-            <button className="uppercase tracking-[0.3em] text-white text-sm font-light hover:text-cyan-400 transition-colors">
-              Menu
-            </button>
+            <SideMenu regions={regions} locales={locales} currentLocale={currentLocale} />
           </div>
 
           {/* Center - STREET CODE */}
