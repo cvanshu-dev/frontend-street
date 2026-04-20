@@ -42,20 +42,10 @@ export default async function Home(props: {
       )}
 
       <div className="py-1 space-y-16">
-
-        {collections.map((collection) => (
-          <section key={collection.id}>
-
-           
-
-            <FeaturedProducts
-              collections={collections}
-              region={region}
-            />
-
-          </section>
-        ))}
-
+        <FeaturedProducts
+          collections={collections}
+          region={region}
+        />
       </div>
     </>
   )
