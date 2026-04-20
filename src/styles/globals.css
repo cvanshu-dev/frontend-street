@@ -258,14 +258,14 @@
 
 /* Cart Dropdown Text Color Styling */
 .remove-btn {
-  color: #E3E3E3 !important;
+  color: #111111 !important;
   font-size: 10px;
   text-decoration: underline;
-  opacity: 0.6;
+  opacity: 1;
   transition: all 0.3s ease;
 }
 
 .remove-btn:hover {
-  opacity: 1;
-  color: #F5F5F5 !important;
+  opacity: 0.8;
+  color: #333333 !important;
 }

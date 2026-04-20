@@ -82,13 +82,13 @@ const CartDropdown = ({
       <Popover className="relative h-full">
         <PopoverButton className="h-full premium-cart-button">
           <LocalizedClientLink
-            className="premium-nav-link premium-nav-cart text-[11px] font-medium tracking-[0.25em] uppercase text-white/95 hover:text-white transition flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
+            className="premium-nav-link premium-nav-cart text-[10px] font-medium tracking-[0.3em] uppercase text-white/90 hover:text-white transition flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/20 bg-black/40 backdrop-blur-[2px] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
             href="/cart"
             data-testid="nav-cart-link"
           >
             Cart{" "}
             <span
-              className="text-[10px] text-white/80"
+              className="text-[10px] text-white/70"
             >
               ({totalItems})
             </span>
@@ -106,15 +106,15 @@ const CartDropdown = ({
         >
           <PopoverPanel
             static
-            className="hidden small:block absolute top-[calc(100%+10px)] right-0 w-[440px] text-white/90 premium-cart-dropdown overflow-hidden rounded-2xl border border-white/8 bg-gradient-to-b from-[#0b0b0c]/95 via-[#0d0d10]/95 to-[#09090a]/95 backdrop-blur-xl shadow-[0_24px_60px_rgba(0,0,0,0.55)]"
+            className="hidden small:block absolute top-[calc(100%+10px)] right-0 w-[440px] text-black/90 premium-cart-dropdown overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_24px_60px_rgba(0,0,0,0.18)]"
             data-testid="nav-cart-dropdown"
           >
-            <div className="px-5 py-4 flex items-center justify-between border-b border-white/8">
+            <div className="px-5 py-4 flex items-center justify-between border-b border-black/10">
               <div className="flex flex-col">
-                <span className="text-[11px] uppercase tracking-[0.3em] text-white/90">Shopping Bag</span>
-                <span className="text-[12px] text-white/70">Curated essentials</span>
+                <span className="text-[11px] uppercase tracking-[0.3em] text-black/80">Shopping Bag</span>
+                <span className="text-[12px] text-black/60">Curated essentials</span>
               </div>
-              <span className="text-[10px] uppercase tracking-[0.25em] text-white/80">{totalItems} Items</span>
+              <span className="text-[10px] uppercase tracking-[0.25em] text-black/70">{totalItems} Items</span>
             </div>
             {cartState && cartState.items?.length ? (
               <>
@@ -127,7 +127,7 @@ const CartDropdown = ({
                     })
                     .map((item) => (
                       <div
-                        className="grid grid-cols-[110px_1fr] gap-x-4 pb-6 border-b border-white/8 last:border-b-0 last:pb-0"
+                        className="grid grid-cols-[110px_1fr] gap-x-4 pb-6 border-b border-black/10 last:border-b-0 last:pb-0"
                         key={item.id}
                         data-testid="cart-item"
                       >
@@ -145,7 +145,7 @@ const CartDropdown = ({
                           <div className="flex flex-col flex-1">
                             <div className="flex items-start justify-between">
                               <div className="flex flex-col overflow-ellipsis whitespace-nowrap mr-4 w-[190px]">
-                                <h3 className="text-[14px] font-medium text-white/90 overflow-hidden text-ellipsis">
+                                <h3 className="text-[14px] font-medium text-black/90 overflow-hidden text-ellipsis">
                                   <LocalizedClientLink
                                     href={`/products/${item.product_handle}`}
                                     data-testid="product-link"
@@ -161,7 +161,7 @@ const CartDropdown = ({
                                 <span
                                   data-testid="cart-item-quantity"
                                   data-value={item.quantity}
-                                  className="text-[11px] text-white/70"
+                                  className="text-[11px] text-black/60"
                                 >
                                   Qty: {item.quantity}
                                 </span>
@@ -177,7 +177,7 @@ const CartDropdown = ({
                           </div>
                           <DeleteButton
                             id={item.id}
-                            className="mt-2 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-white hover:text-white/80 transition"
+                            className="mt-2 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-black hover:text-black/70 transition"
                             data-testid="cart-item-remove-button"
                           >
                             Remove
@@ -187,18 +187,18 @@ const CartDropdown = ({
                     ))}
                 </div>
                 <div
-                  className="px-5 py-4 flex flex-col gap-y-4 text-small-regular border-t border-white/8 text-white/90"
+                  className="px-5 py-4 flex flex-col gap-y-4 text-small-regular border-t border-black/10 text-black/80"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="font-semibold text-white/90">
+                    <span className="font-semibold text-black/90">
                       Subtotal{" "}
-                      <span className="font-normal text-white/70">(excl. taxes)</span>
+                      <span className="font-normal text-black/60">(excl. taxes)</span>
                     </span>
                     <span
                       className="text-large-semi"
                       data-testid="cart-subtotal"
                       data-value={subtotal}
-                      style={{ color: "#ffffff", fontWeight: "600" }}
+                      style={{ color: "#111111", fontWeight: "600" }}
                     >
                       {convertToLocale({
                         amount: subtotal,
@@ -212,9 +212,9 @@ const CartDropdown = ({
                       size="large"
                       data-testid="go-to-cart-button"
                       style={{
-                        background: "#f3f1ea",
-                        color: "#0b0b0c",
-                        border: "1px solid #f3f1ea",
+                        background: "#111111",
+                        color: "#ffffff",
+                        border: "1px solid #111111",
                         fontWeight: "600",
                         fontSize: "11px",
                         letterSpacing: "0.08em",
@@ -229,14 +229,14 @@ const CartDropdown = ({
             ) : (
               <div>
                 <div
-                  className="flex py-16 flex-col gap-y-4 items-center justify-center text-white/90"
+                  className="flex py-16 flex-col gap-y-4 items-center justify-center text-black/80"
                 >
                   <div
-                    className="w-7 h-7 rounded-full flex items-center justify-center bg-white/8 border border-white/15 text-[10px] font-semibold text-white/80"
+                    className="w-7 h-7 rounded-full flex items-center justify-center bg-black/5 border border-black/10 text-[10px] font-semibold text-black/70"
                   >
                     0
                   </div>
-                  <span className="text-[14px] text-white/90">Your bag is empty.</span>
+                  <span className="text-[14px] text-black/80">Your bag is empty.</span>
                   <div>
                     <LocalizedClientLink href="/store">
                       <>
@@ -244,9 +244,9 @@ const CartDropdown = ({
                         <Button
                           onClick={close}
                           style={{
-                            background: "rgba(255, 255, 255, 0.08)",
+                            background: "#111111",
                             color: "#ffffff",
-                            border: "1px solid rgba(255, 255, 255, 0.18)",
+                            border: "1px solid #111111",
                             fontWeight: "600",
                             fontSize: "11px",
                             letterSpacing: "0.08em",
