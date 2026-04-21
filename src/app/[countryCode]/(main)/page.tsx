@@ -33,7 +33,6 @@ export default async function Home(props: {
     <>
       <Hero />
       <CategorySplitSection />
-      <InstagramSlider />
 
       <div className="py-1 space-y-16">
         <FeaturedProducts
@@ -41,6 +40,8 @@ export default async function Home(props: {
           region={region}
         />
       </div>
+
+      <InstagramSlider />
     </>
   )
 }
