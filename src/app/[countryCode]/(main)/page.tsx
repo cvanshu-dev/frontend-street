@@ -3,6 +3,7 @@ import { Metadata } from "next"
 import FeaturedProducts from "@modules/home/components/featured-products"
 import Hero from "@modules/home/components/hero"
 import CategorySplitSection from "@modules/home/components/img"
+import InstagramSlider from "@modules/home/components/instagram-slider"
 import { listCollections } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
 
@@ -32,6 +33,7 @@ export default async function Home(props: {
     <>
       <Hero />
       <CategorySplitSection />
+      <InstagramSlider />
 
       <div className="py-1 space-y-16">
         <FeaturedProducts
